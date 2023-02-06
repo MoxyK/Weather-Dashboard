@@ -22,7 +22,7 @@ $(document).ready(function() {
 })
 
 function outputData(response) {
-    return "<div><h2>Weather in " + response.name + "</h2>" +
+    return "<div><h2>Weather in " + response.name + "</h2>" + 
     "<img src='http://openweathermap.org/img/w/" + response.weather[0].icon + ".png' width=100px" + "<br>" +
     "<h4> Weather: " + response.weather[0].main + "<br>" +
     "Description: " + response.weather[0].description + "<br>" +
@@ -32,3 +32,10 @@ function outputData(response) {
 
 
 }
+$(function(){
+    $('button').one('click',function(){
+        var r= $('<input type="button" value="Forecast"/>');
+        $("body").append(r);
+    });
+
+});

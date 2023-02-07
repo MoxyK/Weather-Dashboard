@@ -8,6 +8,7 @@ let tomorrow3 = moment().add(3, 'days');
 let tomorrow4 = moment().add(4, 'days');
 let tomorrow5 = moment().add(5, 'days');
 
+
 $(document).ready(function() {
     $("#submit").click(function() {
         let location = $("#location").val();
@@ -40,6 +41,7 @@ function outputData(response) {
 
 
 }
+
 $(function(){
     $("button").one("click",function(){
         var r= $('<input type="button" id="forecast" value="forecast"/>');
@@ -111,3 +113,20 @@ $(function(){
     }
 
 });
+
+let searchHistory = (localStorage.searchHistory) ? JSON.parse(localStorage.searchHistory) : [];
+document.querySelector("#submit").addEventListener("click", () => {
+  searchHistory.push(document.querySelector("#location").value);
+  localStorage.searchHistory = JSON.stringify(searchHistory);
+});
+
+document.querySelector("#location").addEventListener("focus", () => {
+  let data = document.querySelector("datalist#searchData");
+  data.innerHTML = "";
+  searchHistory.forEach((search) => {
+    data.innerHTML = "<option>" + data.innerHTML;
+    data.querySelector("option").innerText = search;
+  });
+});
+
+console.log(localStorage);
